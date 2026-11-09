@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="DEVOUR × 1000TT - 1000 настоящих мыслей. Альбом о том, что остаётся внутри.">
+<title>DEVOUR × 1000TT - 1000 настоящих мыслей</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+:root{--bg:#101010;--fg:#e8e6e2;--muted:#999894;--line:rgba(232,230,226,.2)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Manrope,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+nav{position:absolute;z-index:2;top:0;left:0;width:100%;padding:27px 5vw;display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+.navlinks{display:flex;gap:30px;color:#c4c1bc}
+.brand{font-weight:800;letter-spacing:.25em}
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;padding:12vh 8vw 9vh;background:#292929}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 68% 44%,rgba(160,160,160,.18),transparent 28%),radial-gradient(ellipse at 28% 68%,rgba(105,105,105,.16),transparent 38%),linear-gradient(155deg,#353535 0%,#191919 42%,#080808 100%);filter:grayscale(1);transform:scale(1.015)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.35),transparent 75%)}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#c3c0ba}
+h1{font-size:clamp(54px,10.8vw,150px);line-height:.83;letter-spacing:-.085em;margin:25px 0 28px;font-weight:500}
+h1 span{display:block;font-family:"Playfair Display",serif;font-style:italic;font-weight:500;letter-spacing:-.06em}
+.hero-meta{display:flex;gap:26px;align-items:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#d0ceca}
+.rule{height:1px;width:42px;background:#aaa;margin:0 0 1px}
+.scroll{position:absolute;right:5vw;bottom:9vh;z-index:1;writing-mode:vertical-rl;font-size:9px;letter-spacing:.3em;color:#c9c6c0}
+section{padding:120px 9vw}
+.section-kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.about{display:grid;grid-template-columns:1fr 1.15fr;gap:10vw;align-items:start}
+.about h2,.statement h2{font-size:clamp(32px,5vw,66px);line-height:1.02;letter-spacing:-.06em;font-weight:500;margin:0}
+.about h2 em{font-family:"Playfair Display",serif;font-weight:500}
+.about-copy{max-width:520px;color:#aaa8a3;font-size:14px;line-height:2}
+.about-copy p{margin:0 0 20px}
+.quote{font-family:"Playfair Display",serif;font-size:clamp(25px,3vw,42px);line-height:1.25;color:#d7d4ce;font-style:italic;margin-top:42px}
+.statement{min-height:70vh;display:flex;flex-direction:column;justify-content:center;position:relative;background:#181818;overflow:hidden}
+.statement:before{content:"1000";position:absolute;right:-2vw;bottom:-.35em;font-size:34vw;line-height:1;font-weight:800;letter-spacing:-.1em;color:rgba(255,255,255,.025)}
+.statement h2{max-width:900px;position:relative}
+.statement h2 span{font-family:"Playfair Display",serif;font-style:italic;color:#aaa59d}
+.track-section{padding-top:110px;padding-bottom:130px}
+.track-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:45px}
+.track-head h2{font-size:clamp(36px,6vw,76px);font-weight:500;letter-spacing:-.07em;margin:0}
+.track-head p{font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.track{display:grid;grid-template-columns:55px 1fr auto;gap:20px;align-items:center;padding:21px 0;border-top:1px solid var(--line);color:#bcb9b3}
+.track:last-child{border-bottom:1px solid var(--line)}
+.track .num{font-size:10px;color:#77746f}
+.track .name{font-size:clamp(15px,2vw,20px);letter-spacing:-.02em}
+.track .time{font-size:10px;letter-spacing:.15em;color:#77746f}
+.track.placeholder{opacity:.48}
+.release{background:#d9d7d1;color:#171717;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:end}
+.release .section-kicker{color:#66635e}
+.release h2{font-size:clamp(48px,8vw,110px);line-height:.88;letter-spacing:-.09em;font-weight:500;margin:0}
+.release-info{font-size:12px;line-height:2;color:#55524d;max-width:370px}
+.release-info strong{display:block;color:#171717;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
+.footer{padding:35px 5vw;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#77746f}
+
+.track-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:7vw}
+.track.secret{color:#77746f}
+.track.secret .name{letter-spacing:.12em;text-transform:uppercase;filter:blur(3px);user-select:none}
+.track.secret .num{color:#aaa}
+.track-note{margin:28px 0 0;color:#77746f;font-size:10px;line-height:1.8;letter-spacing:.08em;max-width:560px}
+.cover-tease{margin-top:35px;display:flex;align-items:center;gap:18px}
+.cover-art{width:92px;height:92px;border:1px solid rgba(0,0,0,.35);background:linear-gradient(135deg,#777 0%,#252525 55%,#aaa 100%);filter:blur(7px);position:relative;overflow:hidden}
+.cover-art:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25)}
+.cover-copy{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#55524d;line-height:1.8}
+.cover-copy strong{display:block;color:#171717;font-size:11px;letter-spacing:.2em}
+
+@media(max-width:700px){
+ nav{padding:22px 6vw}.navlinks{gap:14px;font-size:8px}.hero{padding:12vh 7vw 12vh}.hero:before{background-position:54% center}
+ .hero-meta{flex-wrap:wrap;gap:14px;font-size:9px}
+ section{padding:82px 7vw}.about,.release{grid-template-columns:1fr;gap:45px}.track-grid{grid-template-columns:1fr}
+ .about h2{max-width:500px}.statement{min-height:58vh}.track-head{display:block}.track-head p{margin-top:15px}
+ .track{grid-template-columns:32px 1fr auto;gap:12px}.scroll{right:4vw}
+}
+
+/* CINEMATIC EDITION */
+:root{--bg:#080808;--fg:#e9e7e2;--muted:#77746f;--line:rgba(233,231,226,.16)}
+body{background:#080808}
+nav{position:fixed;mix-blend-mode:normal;background:linear-gradient(180deg,rgba(0,0,0,.52),transparent);transition:background .35s}
+.brand{font-size:10px}
+.hero{min-height:100svh;background:#090909}
+.hero:before{filter:grayscale(1);transform:scale(1.02);animation:fogDrift 24s ease-in-out infinite alternate}
+.hero:after{background:linear-gradient(0deg,rgba(0,0,0,.86),rgba(0,0,0,.12) 55%,rgba(0,0,0,.25)),linear-gradient(90deg,rgba(0,0,0,.38),transparent 70%)}
+@keyframes fogDrift{from{transform:scale(1.02);opacity:.72}to{transform:scale(1.12);opacity:1}}
+.hero-content{max-width:1000px}
+.hero h1{text-shadow:0 5px 35px rgba(0,0,0,.3)}
+.hero .eyebrow{display:flex;align-items:center;gap:12px}
+.hero .eyebrow:before{content:"";width:22px;height:1px;background:#aaa}
+.hero-meta{font-size:9px}
+section{position:relative}
+.about{background:#0b0b0b}
+.about-copy{font-size:13px}
+.quote{max-width:470px}
+.statement{background:#111}
+.statement:after{content:"";position:absolute;left:9vw;top:0;width:1px;height:100%;background:rgba(255,255,255,.08)}
+.track-section{background:#090909}
+.track-head{margin-bottom:52px}
+.track-head h2{font-family:"Playfair Display",serif;font-style:italic;font-weight:500}
+.track-grid{column-gap:9vw}
+.track{padding:19px 0;transition:padding .25s ease,color .25s ease}
+.track:hover{padding-left:9px;color:#f0eee9}
+.track .num{font-variant-numeric:tabular-nums}
+.track .name{font-weight:500}
+.track.secret{opacity:.68}
+.track.secret:hover{opacity:1}
+.track.secret .name{filter:blur(5px);transition:filter .3s}
+.track.secret.revealed .name{filter:blur(0)}
+.track.secret:hover .name{filter:blur(5px)}
+.track-note{border-left:1px solid #777;padding-left:16px}
+.release{background:#d2d0ca;min-height:78vh}
+.release h2{font-family:"Playfair Display",serif;font-weight:500}
+.cover-art{width:clamp(110px,17vw,180px);height:clamp(110px,17vw,180px);background:
+radial-gradient(ellipse at 50% 40%,rgba(230,230,230,.4),transparent 36%),
+linear-gradient(145deg,#b7b5af 0%,#55534f 30%,#171717 70%,#999791 100%);
+filter:blur(13px);transform:scale(.92);box-shadow:0 15px 45px rgba(0,0,0,.25)}
+.cover-art:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.18) 4px)}
+.cover-copy{font-size:8px;letter-spacing:.22em}
+.cover-copy strong{font-size:10px}
+.footer{background:#080808}
+.section-kicker{letter-spacing:.34em}
+.scroll{animation:scrollPulse 2.2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.45;transform:translateY(0)}50%{opacity:1;transform:translateY(6px)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:700px){
+ .hero:before{animation:none}
+ .track-grid{column-gap:0}
+ .release{min-height:auto}
+ .statement:after{left:7vw}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+ .reveal{opacity:1;transform:none}
+}
+
+
+/* INTERACTIVE DETAILS */
+.hero:before{background-image:
+radial-gradient(ellipse at 70% 42%,rgba(210,210,210,.16),transparent 24%),
+radial-gradient(ellipse at 25% 66%,rgba(170,170,170,.13),transparent 34%),
+linear-gradient(155deg,#3b3b3b 0%,#202020 46%,#080808 100%)}
+.hero:after{background:
+radial-gradient(ellipse at 55% 50%,transparent 0%,rgba(0,0,0,.15) 45%,rgba(0,0,0,.72) 100%),
+linear-gradient(0deg,rgba(0,0,0,.82),transparent 70%)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.action-btn,.nav-cta,.text-btn{font:inherit;cursor:pointer}
+.action-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;padding:15px 18px;border:1px solid rgba(255,255,255,.45);background:transparent;color:#eee;font-size:9px;letter-spacing:.15em;text-transform:uppercase;transition:background .25s,color .25s,border .25s,transform .25s}
+.action-btn:hover,.nav-cta:hover,.text-btn:hover{transform:translateY(-2px)}
+.action-btn span{font-size:14px}
+.action-primary{background:#e6e4df;color:#111;border-color:#e6e4df}
+.action-primary:hover{background:#fff}
+.action-ghost:hover{background:rgba(255,255,255,.12)}
+.action-dark{background:#151515;color:#eee;border-color:#151515;margin-top:25px}
+.nav-cta{background:transparent;color:#eee;border:1px solid rgba(255,255,255,.45);padding:9px 12px;font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+.track-controls{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.text-btn{border:0;background:none;color:#aaa;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:8px 0}
+.track.secret-track{width:100%;text-align:left;background:none;border-left:0;border-right:0;border-bottom:0;font-family:inherit;cursor:pointer}
+.track.secret-track:hover .name{filter:blur(1.5px)}
+.track.secret-track:focus-visible,.action-btn:focus-visible,.nav-cta:focus-visible,.text-btn:focus-visible{outline:1px solid #eee;outline-offset:4px}
+.archive-btn{margin-top:26px}
+.modal-backdrop{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.modal-backdrop.open{opacity:1;visibility:visible}
+.modal-panel{position:relative;max-width:520px;width:100%;padding:48px;background:#171717;border:1px solid rgba(255,255,255,.2);transform:translateY(14px);transition:transform .25s}
+.modal-backdrop.open .modal-panel{transform:translateY(0)}
+.modal-panel h2{font-family:"Playfair Display",serif;font-size:clamp(30px,5vw,48px);font-weight:500;line-height:1.05;margin:20px 0}
+.modal-panel p{font-size:12px;line-height:2;color:#aaa}
+.modal-close{position:absolute;right:18px;top:14px;background:none;border:0;color:#eee;font-size:28px;cursor:pointer}
+@media(max-width:700px){
+ .navlinks a{display:none}.nav-cta{font-size:7px;padding:8px}
+ .track-controls{align-items:flex-start;margin-top:18px}
+ .modal-panel{padding:38px 25px}
+}
+
+
+.footer-secret{background:none;border:0;color:#77746f;font:inherit;font-size:9px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;padding:6px 0}
+.footer-secret:hover{color:#e8e6e2}
+.password-form{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.password-form input{flex:1;min-width:180px;background:#090909;border:1px solid rgba(255,255,255,.25);padding:15px;color:#eee;font:inherit;font-size:11px;letter-spacing:.08em;outline:none}
+.password-form input:focus{border-color:#eee}
+.password-hint{font-size:9px!important;letter-spacing:.12em;text-transform:uppercase;color:#777!important;margin-top:16px!important}
+.password-error{min-height:18px;color:#c7aaa5!important;font-size:10px!important;margin:8px 0 0!important}
+.secret-message{border-left:1px solid #aaa;padding:5px 0 5px 18px;margin:28px 0;font-family:"Playfair Display",serif;font-size:clamp(20px,3vw,28px);font-style:italic;line-height:1.45;color:#dedbd5}
+.secret-signature{font-size:8px!important;letter-spacing:.2em;text-transform:uppercase;color:#777!important}
+
+
+/* NO-JAVASCRIPT / CHAT PREVIEW FRIENDLY CONTROLS */
+.action-btn, .nav-cta, .text-btn, .footer-secret {text-decoration:none}
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+summary {list-style:none;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+.native-reveal{margin-top:12px}
+.native-reveal summary{display:inline-block}
+.native-hint{color:#888;font-size:11px;line-height:1.8;margin-top:12px}
+.archive-disclosure>p{color:#888;font-size:12px;line-height:1.9;max-width:500px;margin:18px 0}
+.closed-archive{background:#111;padding:90px 9vw;color:#eee}
+.closed-archive h2{font-family:"Playfair Display",serif;font-size:clamp(38px,6vw,70px);font-weight:500;margin:18px 0}
+.closed-archive>p{color:#999;font-size:12px;line-height:1.8}
+.closed-archive .archive-disclosure{margin-top:28px}
+.closed-archive .secret-message{max-width:520px}
+.footer-secret{display:inline-block}
+
+
+*{box-sizing:border-box}
+html{height:auto} body{isolation:isolate;overflow-x:hidden;overflow-y:auto}
+
+.scene{position:relative;width:100vw;height:100svh;min-height:520px;overflow:hidden;background:
+ radial-gradient(ellipse at 50% 60%,#242522 0,#111210 24%,#050505 68%),
+ linear-gradient(#080908,#020202)}
+.haze{position:absolute;inset:-20%;z-index:1;pointer-events:none;opacity:.5;
+ background:
+ radial-gradient(ellipse 30% 18% at 25% 65%,rgba(190,190,180,.14),transparent 70%),
+ radial-gradient(ellipse 35% 22% at 75% 70%,rgba(190,190,180,.12),transparent 70%),
+ radial-gradient(ellipse 25% 16% at 48% 34%,rgba(220,220,210,.08),transparent 70%);
+ filter:blur(34px);animation:haze 18s ease-in-out infinite alternate}
+@keyframes haze{from{transform:translate3d(-2%,1%,0) scale(1)}to{transform:translate3d(3%,-2%,0) scale(1.12)}}
+.floor{position:absolute;left:-10%;right:-10%;bottom:-20%;height:48%;z-index:2;
+ background:linear-gradient(180deg,rgba(120,120,110,.12),transparent 35%),repeating-linear-gradient(90deg,transparent 0 11%,rgba(255,255,255,.018) 11.1% 11.2%);
+ transform:perspective(500px) rotateX(58deg);transform-origin:top;filter:blur(2px)}
+.portal{position:absolute;z-index:3;left:50%;top:50%;width:min(66vw,760px);height:min(78vh,690px);min-width:320px;min-height:400px;transform:translate(-50%,-50%);perspective:1800px}
+.back{position:absolute;inset:0;background:
+ radial-gradient(ellipse at 50% 46%,#d4d4c9 0,#777970 10%,#292b27 27%,#080908 62%);
+ box-shadow:0 0 60px 25px rgba(0,0,0,.9),0 0 130px 35px rgba(210,210,195,.08);
+ overflow:hidden}
+.back:before{content:"";position:absolute;inset:-20%;background:
+ radial-gradient(ellipse 38% 14% at 50% 66%,rgba(235,235,220,.35),transparent 75%),
+ radial-gradient(ellipse 50% 20% at 50% 35%,rgba(255,255,240,.2),transparent 70%);
+ filter:blur(35px);animation:insideFog 10s ease-in-out infinite alternate}
+@keyframes insideFog{to{transform:translateY(-28px) scale(1.18);opacity:.6}}
+.depthline{position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(240,240,220,.24);box-shadow:0 0 25px 12px rgba(230,230,210,.2);z-index:1}
+.leaf{position:absolute;top:0;bottom:0;width:50%;z-index:5;transform-style:preserve-3d;will-change:transform;
+ background:
+ linear-gradient(90deg,rgba(0,0,0,.78),transparent 13%,rgba(255,255,255,.045) 48%,rgba(0,0,0,.55)),
+ repeating-linear-gradient(90deg,transparent 0 19%,rgba(255,255,255,.025) 19.2% 19.5%,rgba(0,0,0,.13) 20% 20.5%),
+ linear-gradient(90deg,#080908,#252724 22%,#111310 72%,#30312d);
+ box-shadow:inset 0 0 0 2px #454640,inset 0 0 70px 18px #000,0 0 35px #000}
+.leaf:before{content:"";position:absolute;inset:5% 7%;border:1px solid rgba(210,210,195,.24);box-shadow:inset 0 0 0 8px rgba(0,0,0,.25),inset 0 0 0 9px rgba(220,220,210,.055),inset 0 0 0 22px rgba(0,0,0,.18),inset 0 0 0 23px rgba(220,220,210,.04)}
+.leaf:after{content:"";position:absolute;top:47%;height:76px;width:7px;border-radius:3px;background:linear-gradient(90deg,#141513,#c2c1b4 45%,#454640);box-shadow:0 0 14px #000,0 0 25px rgba(0,0,0,.8)}
+.left{left:0;transform-origin:left center;border-right:3px solid #77786f}
+.right{right:0;transform-origin:right center;border-left:3px solid #77786f}
+.left:after{right:7%}.right:after{left:7%}
+.hinge{position:absolute;top:0;bottom:0;width:13px;z-index:7;background:linear-gradient(90deg,#050505,#55564f,#090a09);box-shadow:0 0 15px #000}
+.hinge.l{left:-7px}.hinge.r{right:-7px}
+.frame{position:absolute;inset:-18px;z-index:8;border:18px solid #080908;box-shadow:inset 0 0 0 2px #4b4c45,0 0 0 3px #000,0 0 60px #000;pointer-events:none}
+.scene .brand{position:absolute;z-index:10;top:7%;left:50%;transform:translateX(-50%);text-align:center;letter-spacing:.28em;font-size:11px;color:#b9b9af;white-space:nowrap}
+.scene .brand strong{display:block;font-size:clamp(18px,3vw,30px);font-weight:400;letter-spacing:.2em;color:#e7e6df;margin-bottom:9px}
+.prompt{position:absolute;z-index:12;left:50%;bottom:7%;transform:translateX(-50%);text-align:center;width:min(90%,520px)}
+.prompt p{font-size:10px;letter-spacing:.32em;color:#9a9b92;margin:0 0 20px}
+.open{display:inline-block;padding:15px 28px;border:1px solid rgba(220,220,210,.42);color:#eee;text-decoration:none;font-size:10px;letter-spacing:.3em;background:rgba(5,5,5,.55);cursor:pointer;transition:background .3s,border-color .3s}
+.open:hover{background:rgba(220,220,210,.12);border-color:#eee}
+.note{font-size:9px!important;letter-spacing:.15em!important;color:#666!important;margin-top:15px!important}
+#go{position:absolute;opacity:0;pointer-events:none}
+#go:checked~.scene .left{animation:openLeft 3.05s cubic-bezier(.42,0,.18,1) forwards}
+#go:checked~.scene .right{animation:openRight 3.05s cubic-bezier(.42,0,.18,1) forwards}
+#go:checked~.scene .back{animation:reveal 3.05s ease forwards}
+#go:checked~.scene .portal{animation:portalSuction 2.9s cubic-bezier(.42,0,.18,1) 3.05s forwards;transform-origin:50% 50%}
+#go:checked~.scene .haze{animation:haze 18s ease-in-out infinite alternate,suctionFog 2.95s cubic-bezier(.42,0,.18,1) 3s forwards}
+#go:checked~.scene .floor{animation:floorSuction 2.95s cubic-bezier(.42,0,.18,1) 3s forwards}
+#go:checked~.scene:after{content:"";position:absolute;inset:-15%;z-index:20;pointer-events:none;opacity:0;background:radial-gradient(ellipse at 50% 50%,transparent 0 18%,rgba(0,0,0,.35) 48%,#000 82%);animation:irisSuction 2.9s cubic-bezier(.42,0,.18,1) 3.05s forwards}
+#go:checked~.scene .brand,#go:checked~.scene .prompt{animation:fade .55s ease forwards}
+@keyframes openLeft{
+  0%{transform:rotateY(0deg)}
+  100%{transform:rotateY(90deg)}
+}
+@keyframes openRight{
+  0%{transform:rotateY(0deg)}
+  100%{transform:rotateY(-90deg)}
+}
+@keyframes reveal{0%{filter:brightness(.2)}30%{filter:brightness(.45)}70%{filter:brightness(1.15)}100%{filter:brightness(1.35)}}
+@keyframes fade{to{opacity:0;visibility:hidden;transform:translate(-50%,-12px)}}
+@keyframes portalSuction{
+  0%{transform:translate(-50%,-50%) scale(1);filter:blur(0);opacity:1}
+  18%{transform:translate(-50%,-50%) scale(1.035);filter:blur(0);opacity:1}
+  48%{transform:translate(-50%,-50%) scale(1.32);filter:blur(.4px);opacity:1}
+  78%{transform:translate(-50%,-50%) scale(2.45);filter:blur(3px);opacity:.82}
+  100%{transform:translate(-50%,-50%) scale(5.8);filter:blur(17px);opacity:0}
+}
+@keyframes suctionFog{
+  0%{transform:translate3d(0,0,0) scale(1);opacity:.5}
+  22%{transform:translate3d(0,-.5%,0) scale(1.08);opacity:.62}
+  58%{transform:translate3d(0,-3%,0) scale(1.65);opacity:.9}
+  100%{transform:translate3d(0,-10%,0) scale(4.8);opacity:0}
+}
+@keyframes floorSuction{
+  0%{transform:perspective(500px) rotateX(58deg) scale(1);opacity:1}
+  25%{transform:perspective(500px) rotateX(58deg) scale(1.08);opacity:1}
+  65%{transform:perspective(500px) rotateX(58deg) scale(1.8) translateY(3%);opacity:.9}
+  100%{transform:perspective(500px) rotateX(58deg) scale(5.2) translateY(18%);opacity:0}
+}
+@keyframes irisSuction{
+  0%{opacity:0;transform:scale(.8)}
+  35%{opacity:.12;transform:scale(.92)}
+  70%{opacity:.52;transform:scale(1.12)}
+  100%{opacity:1;transform:scale(1.7)}
+}
+  45%{opacity:.35;transform:scale(1)}
+  100%{opacity:1;transform:scale(1.5)}
+}
+
+.flying-words{position:absolute;inset:0;z-index:16;pointer-events:none;perspective:900px;opacity:0;overflow:hidden}
+.word{position:absolute;display:block;white-space:nowrap;color:rgba(238,237,228,.0);
+ font-size:clamp(13px,2vw,25px);font-weight:300;letter-spacing:.28em;
+ text-shadow:0 0 18px rgba(235,235,220,.22);will-change:transform,opacity}
+.w1{left:12%;top:22%;--x:-34vw;--y:-8vh;--r:-12deg}
+.w2{right:12%;top:34%;font-size:clamp(28px,5vw,62px);--x:35vw;--y:-10vh;--r:9deg}
+.w3{left:4%;top:59%;font-size:clamp(9px,1.25vw,15px);--x:-30vw;--y:8vh;--r:5deg}
+.w4{right:8%;top:72%;font-size:clamp(24px,4vw,48px);--x:30vw;--y:15vh;--r:-8deg}
+.w5{left:22%;top:80%;font-size:clamp(12px,1.7vw,20px);--x:-12vw;--y:25vh;--r:3deg}
+.w6{right:8%;top:15%;font-size:clamp(11px,1.6vw,19px);--x:25vw;--y:-24vh;--r:13deg}
+.w7{left:36%;top:45%;font-size:clamp(10px,1.4vw,17px);--x:-5vw;--y:0vh;--r:-5deg}
+.w8{left:5%;top:39%;font-size:clamp(15px,2.6vw,31px);--x:-36vw;--y:-14vh;--r:18deg}
+.w9{right:6%;top:53%;font-size:clamp(12px,2vw,24px);--x:34vw;--y:2vh;--r:-17deg}
+.w10{left:20%;top:13%;font-size:clamp(10px,1.5vw,18px);--x:-22vw;--y:-28vh;--r:7deg}
+.w11{right:22%;top:83%;font-size:clamp(17px,3vw,36px);--x:24vw;--y:28vh;--r:-9deg}
+.w12{left:42%;top:67%;font-size:clamp(9px,1.2vw,14px);--x:-2vw;--y:19vh;--r:11deg}
+@keyframes wordFly{
+  0%{opacity:0;transform:translate3d(0,0,-1350px) scale(.08) rotate(var(--r)) skewX(0deg);filter:blur(14px);letter-spacing:.65em;color:rgba(238,237,228,0)}
+  16%{opacity:.68;filter:blur(3px);color:rgba(238,237,228,.72)}
+  42%{opacity:.88;filter:blur(.5px);letter-spacing:.12em}
+  68%{opacity:.76;transform:translate3d(calc(var(--x)*.2),calc(var(--y)*.2),120px) scale(1.65) rotate(var(--r)) skewX(-4deg);filter:blur(1px)}
+  100%{opacity:0;transform:translate3d(var(--x),var(--y),1900px) scale(7.5) rotate(var(--r)) skewX(17deg);filter:blur(22px);letter-spacing:.7em;color:rgba(238,237,228,0)}
+}
+  14%{opacity:.88;filter:blur(1.5px);color:rgba(238,237,228,.82)}
+  38%{opacity:.78;filter:blur(.2px);letter-spacing:.12em}
+  66%{opacity:.58;filter:blur(1px);transform:translate3d(calc(var(--x)*.55),calc(var(--y)*.55),160px) scale(1.6) rotate(var(--r)) skewX(-8deg)}
+  100%{opacity:0;transform:translate3d(var(--x),var(--y),1050px) scale(4.2) rotate(var(--r)) skewX(13deg);filter:blur(12px);letter-spacing:.48em;color:rgba(238,237,228,0)}
+}
+#go:checked~.scene .flying-words{opacity:1}
+#go:checked~.scene .word{animation:wordFly 2.85s cubic-bezier(.16,1,.3,1) 3.25s both}
+#go:checked~.scene .w2{animation-delay:3.42s}
+#go:checked~.scene .w3{animation-delay:3.58s}
+#go:checked~.scene .w4{animation-delay:3.72s}
+#go:checked~.scene .w5{animation-delay:3.88s}
+#go:checked~.scene .w6{animation-delay:4s}
+#go:checked~.scene .w7{animation-delay:4.15s}
+#go:checked~.scene .w8{animation-delay:3.36s}
+#go:checked~.scene .w9{animation-delay:3.64s}
+#go:checked~.scene .w10{animation-delay:3.82s}
+#go:checked~.scene .w11{animation-delay:4.08s}
+#go:checked~.scene .w12{animation-delay:4.22s}
+
+
+.scene-pull{position:absolute;inset:-25%;z-index:14;pointer-events:none;opacity:0;
+ background:radial-gradient(ellipse at 50% 48%,transparent 0 20%,rgba(0,0,0,.16) 43%,rgba(0,0,0,.78) 82%,#000 100%);
+ transform:scale(.8);filter:blur(12px)}
+#go:checked~.scene .scene-pull{animation:scenePull 2.95s cubic-bezier(.16,1,.3,1) 3.05s forwards}
+@keyframes scenePull{
+  0%{opacity:0;transform:scale(.8);filter:blur(12px)}
+  24%{opacity:.18;transform:scale(.92);filter:blur(8px)}
+  65%{opacity:.5;transform:scale(1.25);filter:blur(3px)}
+  100%{opacity:1;transform:scale(2.3);filter:blur(0)}
+}
+
+@media(max-width:650px){.portal{width:78vw;height:70vh;min-width:280px}.scene .brand{top:9%}.leaf:before{inset:4% 5%}.frame{inset:-11px;border-width:11px}}
+
+/* V7 — ONE CONTINUOUS CAMERA TRACK. The environment moves as one shot;
+   no independent zoom/fog/iris pulses fighting each other. */
+#go:checked~.scene{
+  animation:singleCameraTrack 2.95s cubic-bezier(.38,0,.18,1) 3.05s both!important;
+  transform-origin:50% 48%!important;
+  will-change:transform,filter;
+}
+@keyframes singleCameraTrack{
+  0%{transform:scale(1) translate3d(0,0,0);filter:blur(0)}
+  100%{transform:scale(2.15) translate3d(0,1.5%,0);filter:blur(2px)}
+}
+/* Keep the portal, haze and floor locked to the camera; remove competing motion. */
+#go:checked~.scene .portal,
+#go:checked~.scene .haze,
+#go:checked~.scene .floor,
+#go:checked~.scene .scene-pull{
+  animation:none!important;
+}
+#go:checked~.scene .portal{transform:translate(-50%,-50%)!important}
+#go:checked~.scene .haze{transform:scale(1.06)!important;opacity:.72!important}
+#go:checked~.scene .floor{transform:perspective(500px) rotateX(58deg)!important;opacity:.9!important}
+#go:checked~.scene:after{animation:none!important;opacity:0!important}
+#go:checked~.scene .back{animation:reveal 2.95s ease 0s both!important}
+/* Typography emerges from the doorway on the same camera beat, as one flow. */
+#go:checked~.scene .flying-words{opacity:1!important}
+#go:checked~.scene .word{
+  animation:unifiedWordRush 2.95s cubic-bezier(.38,0,.18,1) 0s both!important;
+}
+@keyframes unifiedWordRush{
+  0%{opacity:0;transform:translate3d(0,0,-900px) scale(.16) rotate(var(--r));filter:blur(10px);letter-spacing:.5em}
+  18%{opacity:.68;filter:blur(3px)}
+  55%{opacity:.82;transform:translate3d(calc(var(--x)*.18),calc(var(--y)*.18),120px) scale(1.25) rotate(var(--r));filter:blur(.5px);letter-spacing:.16em}
+  100%{opacity:0;transform:translate3d(var(--x),var(--y),1150px) scale(3.8) rotate(var(--r));filter:blur(12px);letter-spacing:.6em}
+}
+/* Door leaves complete their single inward swing before the camera track starts. */
+#go:checked~.scene .left{animation:openLeft 3.05s cubic-bezier(.38,0,.18,1) forwards!important}
+#go:checked~.scene .right{animation:openRight 3.05s cubic-bezier(.38,0,.18,1) forwards!important}
+
+
+/* Integration fix: keep V7 camera/door motion intact, then hand off cleanly to the album. */
+#go{z-index:100;left:18px;top:18px}
+.scene{position:fixed!important;inset:0;width:100vw;height:100svh;min-height:100svh;z-index:90}
+#go:checked~.scene{animation:singleCameraTrack 2.95s cubic-bezier(.38,0,.18,1) 3.05s both, introExit .65s ease 5.95s forwards!important}
+@keyframes introExit{to{opacity:0;visibility:hidden;pointer-events:none}}
+.main-site{position:relative!important;z-index:95!important;opacity:0;visibility:hidden;pointer-events:none}
+#go:checked~.main-site{animation:siteReveal 1.15s ease 5.65s forwards!important}
+@keyframes siteReveal{0%{opacity:0;visibility:visible;pointer-events:none}1%{opacity:0;visibility:visible}100%{opacity:1;visibility:visible;pointer-events:auto}}
+@media(prefers-reduced-motion:reduce){#go:checked~.scene{animation: introExit .2s ease .2s forwards!important}#go:checked~.main-site{animation:siteReveal .2s ease .2s forwards!important}}
+
+
+/* V13: force the original V7 hinged-door movement in the integrated intro */
+#go:checked ~ .scene .portal .leaf.left{
+  transform-origin:0% 50% !important;
+  transform-style:preserve-3d !important;
+  backface-visibility:visible !important;
+  animation:integratedDoorLeft 3.05s cubic-bezier(.38,0,.18,1) 0s both !important;
+}
+#go:checked ~ .scene .portal .leaf.right{
+  transform-origin:100% 50% !important;
+  transform-style:preserve-3d !important;
+  backface-visibility:visible !important;
+  animation:integratedDoorRight 3.05s cubic-bezier(.38,0,.18,1) 0s both !important;
+}
+@keyframes integratedDoorLeft{
+  0%{transform:rotateY(0deg)}
+  100%{transform:rotateY(90deg)}
+}
+@keyframes integratedDoorRight{
+  0%{transform:rotateY(0deg)}
+  100%{transform:rotateY(-90deg)}
+}
+/* Keep the complete V7 camera move after the doors have finished opening. */
+#go:checked ~ .scene{
+  animation:singleCameraTrack 2.95s cubic-bezier(.38,0,.18,1) 3.05s both,
+            introExit .65s ease 5.95s forwards !important;
+}
+#go:checked ~ .main-site{
+  animation:siteReveal 1.15s ease 6.1s forwards !important;
+}
+
+
+
+
+/* Tracklist: hidden titles and feature credits are masked independently */
+.track-grid .track {
+  grid-template-columns: 42px minmax(0,1fr) auto auto;
+  column-gap:16px;
+}
+.track-grid .feat {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  justify-self:start;
+  white-space:nowrap;
+  font-size:9px;
+  letter-spacing:.14em;
+  color:rgba(232,230,226,.42);
+}
+.track-grid .feat-label {
+  color:rgba(232,230,226,.62);
+  filter:none;
+}
+.track-grid .feat-name {
+  display:inline-block;
+  color:rgba(232,230,226,.5);
+  filter:blur(4px);
+  user-select:none;
+  pointer-events:none;
+}
+.track-grid .blurred-track {
+  opacity:.62;
+  user-select:none;
+  pointer-events:none;
+}
+.track-grid .blurred-track .name,
+.track-grid .blurred-track .num,
+.track-grid .blurred-track .time {
+  filter:blur(4px);
+  color:rgba(232,230,226,.55);
+}
+@media (max-width:600px) {
+  .track-grid .track { grid-template-columns:30px minmax(0,1fr) auto; column-gap:9px; }
+  .track-grid .feat { grid-column:2; grid-row:2; margin-top:-12px; margin-bottom:10px; font-size:8px; }
+  .track-grid .time { grid-column:3; grid-row:1; }
+  .track-grid .blurred-track .name,
+  .track-grid .blurred-track .num,
+  .track-grid .blurred-track .time { filter:blur(3px); }
+}
+
+
+.sound-toggle{display:inline-flex;align-items:center;gap:9px;background:transparent;border:1px solid rgba(232,230,226,.24);color:var(--fg);padding:10px 13px;font:inherit;font-size:9px;letter-spacing:.14em;cursor:pointer;white-space:nowrap;transition:border-color .25s,background .25s}
+.sound-toggle:hover{border-color:rgba(232,230,226,.65);background:rgba(255,255,255,.04)}
+.sound-dot{width:6px;height:6px;border-radius:50%;background:#777;box-shadow:0 0 0 3px rgba(255,255,255,.04);transition:background .25s,box-shadow .25s}
+.sound-toggle[aria-pressed="true"] .sound-dot{background:#d8d4ca;box-shadow:0 0 10px rgba(232,230,226,.75)}
+@media(max-width:700px){.sound-toggle{padding:8px 9px;font-size:8px}.navlinks{gap:10px}}
+
+</style>
+</head>
+<body><input id="go" type="checkbox" aria-label="Открыть двери альбома">
+<div class="scene">
+ <div class="haze"></div><div class="floor"></div><div class="scene-pull"></div>
+ <div class="flying-words" aria-hidden="true">
+  <span class="word w1">1000 НАСТОЯЩИХ МЫСЛЕЙ</span>
+  <span class="word w2">DΞVØUR</span>
+  <span class="word w3">Н Е  В С Ё  М О Ж Н О  С К А З А Т Ь</span>
+  <span class="word w4">1ØØØTT</span>
+  <span class="word w5">ВНУТРИ / СНАРУЖИ</span>
+  <span class="word w6">DΞVØUR × 1ØØØTT</span>
+  <span class="word w7">МЫСЛИ НЕ ИСЧЕЗАЮТ</span>
+  <span class="word w8">ОШИБКА / ПАМЯТЬ / ТИШИНА</span>
+  <span class="word w9">[ 1000 : 0001 : 1000 ]</span>
+  <span class="word w10">НЕ НАЗЫВАЙ ЭТО СНОМ</span>
+  <span class="word w11">D̸E̸V̸O̸U̸R̸</span>
+  <span class="word w12">НАСТОЯЩЕЕ / ЛИШНЕЕ / ТВОЁ</span>
+ </div>
+ <div class="brand"><strong>DEVOUR × 1000TT</strong>1000 НАСТОЯЩИХ МЫСЛЕЙ</div>
+ <div class="portal">
+  <div class="back"><div class="depthline"></div></div>
+  <div class="leaf left"></div><div class="leaf right"></div>
+  <div class="hinge l"></div><div class="hinge r"></div><div class="frame"></div>
+ </div>
+ <div class="prompt"><p>ЗА НЕЙ НАЧИНАЕТСЯ ДРУГОЕ ПРОСТРАНСТВО</p><label class="open" for="go">ОТКРЫТЬ ДВЕРЬ</label><p class="note">1000 НАСТОЯЩИХ МЫСЛЕЙ · ВХОД В АЛЬБОМ</p></div>
+</div>
+<div class="main-site">
+<div class="noise"></div>
+<nav><a class="brand" href="#">DEVOUR × 1000TT</a><div class="navlinks"><a href="#about">Идея</a><a href="#tracks">Треки</a><a href="#release">Релиз</a><button class="nav-cta" type="button" data-scroll="#tracks">Открыть архив ↘</button><button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false"><span class="sound-dot"></span><span class="sound-label">ЗВУК ВЫКЛ</span></button></div></nav>
+<header class="hero">
+ <div class="hero-content">
+  <div class="eyebrow">Музыкальный архив · Запись № 001</div>
+  <h1>1000 <span>настоящих</span> мыслей</h1>
+  <div class="hero-meta"><span>DEVOUR × 1000TT</span><i class="rule"></i><span>1000 настоящих мыслей</span></div>
+  <div class="hero-actions">
+   <button class="action-btn action-primary" type="button" data-scroll="#about">Войти в мир альбома <span>↘</span></button>
+   <a class="action-btn action-ghost" href="#tracks">Перейти к треклисту <span>↘</span></a>
+  </div>
+ </div>
+ <div class="scroll">ЛИСТАЙ ВНИЗ ↓</div>
+</header>
+<section class="about" id="about">
+ <div><div class="section-kicker">01 / Концепция</div><h2>Не всё, что <em>внутри,</em> можно сказать вслух.</h2></div>
+ <div class="about-copy">
+  <p>«1000 настоящих мыслей» - пространство между тем, что чувствуешь, и тем, что решаешь показать миру.</p>
+  <p>Это история о тишине, одиночестве, памяти и людях, которые остаются внутри даже после того, как уходят. Здесь нет попытки казаться лучше - только холодный воздух, тяжёлые мысли и честность без объяснений.</p>
+  <div class="quote">«Иногда самый громкий шум - это то, о чём ты молчишь».</div>
+ </div>
+</section>
+<section class="statement">
+ <div class="section-kicker">02 / Атмосфера</div>
+ <h2>Холодный воздух.<br>Пустые пространства.<br><span>Мысли, от которых не скрыться.</span></h2>
+</section>
+<section class="track-section" id="tracks">
+ <div class="track-head"><div><div class="section-kicker">03 / Содержание</div><h2>Треклист</h2></div><div class="track-controls"><p>30 треков · 20 скрыты</p><span class="text-btn">5 СКРЫТЫХ ФИТОВ</span></div></div>
+ <div class="track-grid">
+<div class="track"><span class="num">01</span><span class="name">ВИРАЖИ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">02</span><span class="name">Дьявол носит Прадо</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">03</span><span class="name">Понастоящему</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">04</span><span class="name">Правильно</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">05</span><span class="name">Сон</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">06</span><span class="name">Спрятаться</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">07</span><span class="name">И создан чтоб летать</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">08</span><span class="name">80</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">09</span><span class="name">ДВЕРЬ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track"><span class="num">10</span><span class="name">КАКИЕ МОИ ШАНСЫ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">11</span><span class="name">КАМЕНЬ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">12</span><span class="name">Между нами города</span><span class="feat"><span class="feat-label">FEAT.</span><span class="feat-name">████████</span></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">13</span><span class="name">АКТРИСА</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">14</span><span class="name">НАЯВУ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">15</span><span class="name">ОБРАЗЫ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">16</span><span class="name">ПЕСНИ</span><span class="feat"><span class="feat-label">FEAT.</span><span class="feat-name">████████</span></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">17</span><span class="name">Пох да</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">18</span><span class="name">С ТОБОЙ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">19</span><span class="name">Свеча</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">20</span><span class="name">Сентябрь</span><span class="feat"><span class="feat-label">FEAT.</span><span class="feat-name">████████</span></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">21</span><span class="name">Скелет</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">22</span><span class="name">СОЗНАНИЯ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">23</span><span class="name">СПАЛЬНЫЙ</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">24</span><span class="name">ТОЛЬКО ТЫ</span><span class="feat"><span class="feat-label">FEAT.</span><span class="feat-name">████████</span></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">25</span><span class="name">Тону</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">26</span><span class="name">— — —</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">27</span><span class="name">— — —</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">28</span><span class="name">— — —</span><span class="feat"></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">29</span><span class="name">— — —</span><span class="feat"><span class="feat-label">FEAT.</span><span class="feat-name">████████</span></span><span class="time">- : -</span></div>
+<div class="track blurred-track" data-hidden-track="true"><span class="num">30</span><span class="name">— — —</span><span class="feat"></span><span class="time">- : -</span></div>
+ </div>
+</section>
+<section class="release" id="release">
+ <div><div class="section-kicker">04 / Скоро</div><h2>До<br>встречи<br>внутри.</h2></div>
+ <div class="release-info"><strong>DEVOUR × 1000TT</strong>
+  Дата выхода, обложка, ссылки на прослушивание и дополнительная информация появятся здесь.<br><br>
+  <span style="letter-spacing:.16em;text-transform:uppercase;font-size:9px">Релиз - Скоро</span><a class="action-btn action-dark" href="#about">О концепции альбома <span>↗</span></a>
+  <div class="cover-tease"><div class="cover-art"></div><div class="cover-copy"><strong>Материал засекречен</strong>Обложка до официального анонса</div></div>
+ </div>
+</section>
+<footer class="footer"><span>DEVOUR × 1000TT</span><span>1000 настоящих мыслей</span><span>© 2026</span><a class="footer-secret" href="#closed-archive">[ открыть закрытый архив ]</a></footer>
+
+
+
+</div>
+<script>
+(() => {
+  const button = document.getElementById('soundToggle');
+  if (!button) return;
+
+  let ctx = null, master = null, active = false, noiseSource = null;
+  let ambientNodes = [];
+
+  function makeNoiseBuffer(audioContext) {
+    const length = audioContext.sampleRate * 3;
+    const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
+    const data = buffer.getChannelData(0);
+    let last = 0;
+    for (let i = 0; i < length; i++) {
+      const white = Math.random() * 2 - 1;
+      last = last * 0.985 + white * 0.015;
+      data[i] = last;
+    }
+    return buffer;
+  }
+
+  function startSound() {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) {
+      button.querySelector('.sound-label').textContent = 'НЕТ AUDIO API';
+      return;
+    }
+    if (!ctx) {
+      ctx = new AC();
+      master = ctx.createGain();
+      master.gain.value = 0;
+      master.connect(ctx.destination);
+
+      // Deep, slowly moving sub drone.
+      const sub = ctx.createOscillator();
+      const subGain = ctx.createGain();
+      const subFilter = ctx.createBiquadFilter();
+      sub.type = 'sine';
+      sub.frequency.value = 72;
+      subGain.gain.value = 0.035;
+      subFilter.type = 'lowpass';
+      subFilter.frequency.value = 95;
+      sub.connect(subFilter); subFilter.connect(subGain); subGain.connect(master);
+      sub.start();
+      ambientNodes.push(sub, subGain);
+
+      const tone = ctx.createOscillator();
+      const toneGain = ctx.createGain();
+      tone.type = 'triangle';
+      tone.frequency.value = 118;
+      toneGain.gain.value = 0.012;
+      tone.connect(toneGain); toneGain.connect(master);
+      tone.start();
+      ambientNodes.push(tone, toneGain);
+
+      // Filtered air / room tone.
+      noiseSource = ctx.createBufferSource();
+      noiseSource.buffer = makeNoiseBuffer(ctx);
+      noiseSource.loop = true;
+      const noiseFilter = ctx.createBiquadFilter();
+      const noiseGain = ctx.createGain();
+      noiseFilter.type = 'lowpass';
+      noiseFilter.frequency.value = 260;
+      noiseGain.gain.value = 0.035;
+      noiseSource.connect(noiseFilter); noiseFilter.connect(noiseGain); noiseGain.connect(master);
+      noiseSource.start();
+      ambientNodes.push(noiseSource, noiseFilter, noiseGain);
+
+      // Slow breathing movement in the drone.
+      const lfo = ctx.createOscillator();
+      const lfoGain = ctx.createGain();
+      lfo.type = 'sine';
+      lfo.frequency.value = 0.045;
+      lfoGain.gain.value = 3;
+      lfo.connect(lfoGain); lfoGain.connect(sub.frequency);
+      lfo.start();
+      ambientNodes.push(lfo, lfoGain);
+    }
+    ctx.resume();
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.setTargetAtTime(0.16, ctx.currentTime, 2.4);
+    active = true;
+    button.setAttribute('aria-pressed','true');
+    button.querySelector('.sound-label').textContent = 'ЗВУК ВКЛ';
+  }
+
+  function stopSound() {
+    if (!ctx || !master) return;
+    master.gain.cancelScheduledValues(ctx.currentTime);
+    master.gain.setTargetAtTime(0, ctx.currentTime, 0.45);
+    active = false;
+    button.setAttribute('aria-pressed','false');
+    button.querySelector('.sound-label').textContent = 'ЗВУК ВЫКЛ';
+  }
+
+  function deepClick() {
+    if (!active || !ctx || !master) return;
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(145, now);
+    osc.frequency.exponentialRampToValueAtTime(78, now + 0.20);
+    filter.type = 'lowpass';
+    filter.frequency.value = 260;
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.095, now + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.30);
+    osc.connect(filter); filter.connect(gain); gain.connect(master);
+    osc.start(now); osc.stop(now + 0.32);
+  }
+
+  button.addEventListener('click', () => active ? stopSound() : startSound());
+  document.addEventListener('click', (event) => {
+    if (event.target.closest('#soundToggle')) return;
+    if (event.target.closest('a,button,[role="button"]')) deepClick();
+  });
+})();
+</script>
+
+</body>
+</html>
